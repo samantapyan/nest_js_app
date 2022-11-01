@@ -3,8 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {User} from "./typeorm/entities/User";
-import { UsersController } from './users/controllers/users/users.controller';
 import { UsersModule } from './users/users.module';
+import { CompaniesModule } from './companies/companies.module';
 
 @Module({
   imports: [
@@ -15,12 +15,14 @@ import { UsersModule } from './users/users.module';
       username: "root",
       password: "1111",
       database: "nest_js_tutorial",
+      autoLoadEntities: true,
       synchronize: true,
       entities: [
         User
       ],
     }),
-    UsersModule
+    UsersModule,
+    CompaniesModule
   ],
   controllers: [AppController],
   providers: [AppService],
