@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
-import {Company} from "./company";
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Company } from './company';
 
 @Injectable()
 export class CompaniesService {
@@ -10,14 +10,15 @@ export class CompaniesService {
   ) {}
 
   createCompany(company) {
-
     const companyData = this.companyRepository.create({
       ...company,
       createdAt: new Date(),
-      updatedAt: new Date()
-    })
-    console.log("xxxxxxxxxxxxxxxxx",companyData);
-    return this.companyRepository.save(companyData)
+      updatedAt: new Date(),
+    });
+    return this.companyRepository.save(companyData);
   }
 
+  getCompanies() {
+    return this.companyRepository.find();
+  }
 }

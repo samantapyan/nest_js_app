@@ -1,19 +1,13 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import { Column, Entity } from 'typeorm';
+import { QueryFields } from '../utils/query.fields';
 
-@Entity({name: "companies"})
-export class Company {
-  @PrimaryGeneratedColumn({type: "bigint"})
-  id: number;
-
-  @Column()
-  createdAt: Date;
-
-  @Column()
-  updatedAt: Date;
-
-  @Column({unique: true})
+@Entity({ name: 'companies' })
+export class Company extends QueryFields {
+  @Column({ unique: true })
   name: string;
 
   @Column()
   type: string;
+
+  worker: Worker[];
 }
